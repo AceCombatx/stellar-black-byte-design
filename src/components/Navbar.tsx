@@ -2,10 +2,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +23,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    if (isHomePage) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
+    setIsOpen(false);
+  };
+
   return (
     <nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -30,22 +42,39 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
-          <a href="#" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <span className="text-xl md:text-2xl font-heading font-bold text-white">VOLARIS</span>
             <span className="text-xl md:text-2xl font-heading font-bold text-gray-400">SOLUTIONS</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8 items-center">
-            <a href="#services" className="text-sm text-white/80 hover:text-white transition-colors">
+            <button 
+              className="text-sm text-white/80 hover:text-white transition-colors"
+              onClick={() => scrollToSection("services")}
+            >
               Services
-            </a>
-            <a href="#about" className="text-sm text-white/80 hover:text-white transition-colors">
+            </button>
+            <button 
+              className="text-sm text-white/80 hover:text-white transition-colors"
+              onClick={() => scrollToSection("about")}
+            >
               About
-            </a>
-            <a href="#contact" className="text-sm text-white/80 hover:text-white transition-colors">
+            </button>
+            <button 
+              className="text-sm text-white/80 hover:text-white transition-colors"
+              onClick={() => scrollToSection("contact")}
+            >
               Contact
-            </a>
+            </button>
+            <Link to="/services">
+              <Button 
+                variant="outline" 
+                className="bg-transparent border border-white/20 hover:border-white/50 text-white"
+              >
+                View Pricing
+              </Button>
+            </Link>
             <Button 
               variant="outline" 
               className="bg-transparent border border-white/20 hover:border-white/50 text-white"
@@ -78,27 +107,47 @@ const Navbar = () => {
         } transition-transform duration-300 ease-in-out md:hidden`}
       >
         <div className="flex flex-col space-y-8 p-8 text-center">
-          <a 
-            href="#services" 
+          <button 
             className="text-lg font-medium text-white/80 hover:text-white" 
-            onClick={() => setIsOpen(false)}
+            onClick={() => scrollToSection("services")}
           >
             Services
-          </a>
-          <a 
-            href="#about" 
+          </button>
+          <button 
             className="text-lg font-medium text-white/80 hover:text-white" 
-            onClick={() => setIsOpen(false)}
+            onClick={() => scrollToSection("about")}
           >
             About
-          </a>
-          <a 
-            href="#contact" 
+          </button>
+          <button 
             className="text-lg font-medium text-white/80 hover:text-white" 
-            onClick={() => setIsOpen(false)}
+            onClick={() => scrollToSection("contact")}
           >
             Contact
-          </a>
+          </button>
+          <Link 
+            to="/services" 
+            className="text-lg font-medium text-white/80 hover:text-white"
+            onClick={() => setIsOpen(false)}
+          >
+            View Pricing
+          </Link>
+          <div className="pt-4 border-t border-white/10">
+            <Link 
+              to="/terms-of-service" 
+              className="text-sm text-gray-400 hover:text-white block mb-4"
+              onClick={() => setIsOpen(false)}
+            >
+              Terms of Service
+            </Link>
+            <Link 
+              to="/privacy-policy" 
+              className="text-sm text-gray-400 hover:text-white block mb-6"
+              onClick={() => setIsOpen(false)}
+            >
+              Privacy Policy
+            </Link>
+          </div>
           <Button 
             variant="outline" 
             className="bg-transparent border border-white/20 hover:border-white/50 text-white mx-auto"

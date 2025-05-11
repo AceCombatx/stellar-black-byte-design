@@ -1,5 +1,6 @@
 
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,10 +10,10 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="lg:col-span-1">
-            <a href="#" className="inline-block mb-6">
+            <Link to="/" className="inline-block mb-6">
               <span className="text-xl font-heading font-bold text-white">VOLARIS</span>
               <span className="text-xl font-heading font-bold text-gray-400">SOLUTIONS</span>
-            </a>
+            </Link>
             <p className="text-gray-400 mb-6">
               Helping developers do more, with less stress.
             </p>
@@ -42,28 +43,28 @@ const Footer = () => {
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Services</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center group">
+                <Link to="/services" className="text-gray-400 hover:text-white transition-colors flex items-center group">
                   <span>Discord Bots</span>
                   <ArrowRight className="ml-2 h-3 w-3 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all" />
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center group">
+                <Link to="/services?tab=web-dev" className="text-gray-400 hover:text-white transition-colors flex items-center group">
                   <span>Web Development</span>
                   <ArrowRight className="ml-2 h-3 w-3 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all" />
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center group">
+                <Link to="/services?tab=hosting" className="text-gray-400 hover:text-white transition-colors flex items-center group">
                   <span>Hosting Services</span>
                   <ArrowRight className="ml-2 h-3 w-3 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all" />
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center group">
+                <Link to="/services" className="text-gray-400 hover:text-white transition-colors flex items-center group">
                   <span>Custom Development</span>
                   <ArrowRight className="ml-2 h-3 w-3 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all" />
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -78,16 +79,16 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center group">
+                <Link to="/terms-of-service" className="text-gray-400 hover:text-white transition-colors flex items-center group">
                   <span>Terms of Service</span>
                   <ArrowRight className="ml-2 h-3 w-3 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all" />
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center group">
+                <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors flex items-center group">
                   <span>Privacy Policy</span>
                   <ArrowRight className="ml-2 h-3 w-3 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all" />
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
