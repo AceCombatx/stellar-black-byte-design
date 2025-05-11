@@ -59,7 +59,7 @@ const Services = () => {
         "Hosted infrastructure",
         "Secure deployment"
       ],
-      learnMore: "/services"
+      learnMore: "https://site.volarissolutions.online/services"
     },
     {
       title: "Web Development",
@@ -85,7 +85,7 @@ const Services = () => {
         "Daily backups",
         "Scaling options"
       ],
-      learnMore: "#https://site.volarissolutions.online/services?tab=hosting"
+      learnMore: "https://site.volarissolutions.online/services?tab=hosting"
     },
     {
       title: "Custom Development",
