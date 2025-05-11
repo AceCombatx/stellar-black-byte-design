@@ -1,6 +1,7 @@
 
 import { Code, Bot, Globe, Cloud, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ 
   title, 
@@ -37,10 +38,12 @@ const ServiceCard = ({
       <Button 
         variant="outline" 
         className="w-full border-white/20 hover:border-white/50 hover:bg-white/5 flex justify-between"
-        onClick={() => window.open(learnMore, "_blank")}
+        asChild
       >
-        <span>Learn More</span>
-        <ArrowRight className="h-4 w-4" />
+        <Link to={learnMore}>
+          <span>Learn More</span>
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </Button>
     </div>
   );
@@ -59,7 +62,7 @@ const Services = () => {
         "Hosted infrastructure",
         "Secure deployment"
       ],
-      learnMore: "https://site.volarissolutions.online/services"
+      learnMore: "/services"
     },
     {
       title: "Web Development",
@@ -72,7 +75,7 @@ const Services = () => {
         "API integrations",
         "Performance optimization"
       ],
-      learnMore: "https://site.volarissolutions.online/services?tab=web-dev"
+      learnMore: "/services?tab=web-dev"
     },
     {
       title: "Hosting Services",
@@ -85,7 +88,7 @@ const Services = () => {
         "Daily backups",
         "Scaling options"
       ],
-      learnMore: "#https://site.volarissolutions.online/services?tab=hosting"
+      learnMore: "/services?tab=hosting"
     },
     {
       title: "Custom Development",
@@ -98,7 +101,7 @@ const Services = () => {
         "System integration",
         "Technical consulting"
       ],
-      learnMore: "https://discord.gg/gdZXz3QR6a"
+      learnMore: "/services"
     }
   ];
 
