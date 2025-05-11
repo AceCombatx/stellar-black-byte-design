@@ -59,7 +59,7 @@ const Services = () => {
         "Hosted infrastructure",
         "Secure deployment"
       ],
-      learnMore: "https://site.volarissolutions.online/services"
+      learnMore: "/src/components/pages.Services.tsx/"
     },
     {
       title: "Web Development",
