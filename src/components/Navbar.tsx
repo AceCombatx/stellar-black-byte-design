@@ -29,7 +29,10 @@ const Navbar = () => {
     // Handle clicks outside the mobile menu to close it
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (isOpen && !target.closest('[data-mobile-menu="true"]') && !target.closest('[data-mobile-toggle="true"]')) {
+      // Make sure we're not closing when clicking the toggle button itself
+      if (isOpen && 
+          !target.closest('[data-mobile-menu="true"]') && 
+          !target.closest('[data-mobile-toggle="true"]')) {
         setIsOpen(false);
       }
     };
@@ -62,6 +65,12 @@ const Navbar = () => {
       window.location.href = `/#${id}`;
     }
     setIsOpen(false);
+  };
+
+  // Prevent event propagation when clicking the menu button
+  const toggleMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -120,7 +129,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               data-mobile-toggle="true"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={toggleMenu}
               className="p-2 focus:outline-none"
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
