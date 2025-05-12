@@ -17,11 +17,43 @@ const Navbar = () => {
       } else {
         setScrolled(false);
       }
+      
+      // Close mobile menu on scroll
+      if (isOpen) {
+        setIsOpen(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    
+    // Handle clicks outside the mobile menu to close it
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (isOpen && !target.closest('[data-mobile-menu="true"]') && !target.closest('[data-mobile-toggle="true"]')) {
+        setIsOpen(false);
+      }
+    };
+    
+    document.addEventListener("click", handleClickOutside);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const scrollToSection = (id: string) => {
     if (isHomePage) {
@@ -87,8 +119,10 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
+              data-mobile-toggle="true"
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 focus:outline-none"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? (
                 <X className="h-6 w-6 text-white" />
@@ -102,9 +136,11 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 top-[60px] bg-black z-40 transform ${
+        data-mobile-menu="true"
+        className={`fixed inset-0 top-[60px] bg-black/95 backdrop-blur-md z-40 transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out md:hidden`}
+        } transition-transform duration-300 ease-in-out md:hidden overflow-auto`}
+        style={{ height: "calc(100vh - 60px)" }}
       >
         <div className="flex flex-col space-y-8 p-8 text-center">
           <button 
