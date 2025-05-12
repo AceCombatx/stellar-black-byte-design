@@ -7,39 +7,90 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    /* Light mode (default) */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
 
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 201 96% 32%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 210 40% 90%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 210 40% 90%;
+    --muted-foreground: 215 16% 45%;
 
-    --accent: 0 0% 20%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 210 40% 90%;
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 80%;
+    --border: 210 24% 87%;
+    --input: 210 24% 87%;
+    --ring: 201 96% 32%;
 
     --radius: 0.5rem;
+
+    /* Add sidebar variables for light mode */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 201 96% 32%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 90%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 210 24% 87%;
+    --sidebar-ring: 201 96% 32%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 201 96% 32%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 224 76% 48%;
+
+    /* Add sidebar variables for dark mode */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 201 96% 32%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217 32% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 32% 17%;
+    --sidebar-ring: 224 76% 48%;
   }
 
   ::selection {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(14, 165, 233, 0.2);
   }
 }
 
@@ -54,12 +105,12 @@
   }
   
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-400;
   }
   
   .grid-pattern {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
-                      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
     background-size: 20px 20px;
   }
   
@@ -81,24 +132,28 @@
   }
   
   .glow {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.1);
+  }
+
+  .dark .glow {
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.15);
   }
   
   .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.2);
     transition: all 0.3s ease;
   }
   
   .section-divide {
     height: 1px;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(90deg, rgba(14,165,233,0) 0%, rgba(14,165,233,0.2) 50%, rgba(14,165,233,0) 100%);
   }
   
   .hero-glow {
     position: absolute;
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(14,165,233,0.08) 0%, rgba(0,0,0,0) 70%);
     z-index: 0;
     pointer-events: none;
     border-radius: 100%;
@@ -114,11 +169,20 @@
     inset: -1px;
     border-radius: calc(var(--radius) + 1px);
     padding: 1px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+    background: linear-gradient(90deg, rgba(14,165,233,0.5), rgba(14,165,233,0.2), rgba(14,165,233,0.5));
     mask: linear-gradient(#000, #000) content-box, 
           linear-gradient(#000, #000);
     mask-composite: exclude;
     pointer-events: none;
+  }
+
+  /* Dark mode specific styles */
+  .dark .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400;
+  }
+  
+  .dark .section-divide {
+    background: linear-gradient(90deg, rgba(14,165,233,0) 0%, rgba(14,165,233,0.15) 50%, rgba(14,165,233,0) 100%);
   }
 }
 
@@ -131,5 +195,15 @@
 }
 
 .panel {
-  @apply rounded-lg border border-white/10 bg-white/5 backdrop-blur-lg p-6 hover-glow transition-all duration-300;
+  @apply rounded-lg border border-blue-200/20 bg-white/5 backdrop-blur-lg p-6 hover-glow transition-all duration-300;
 }
+
+.dark .panel {
+  @apply border-blue-500/20 bg-black/5;
+}
+
+/* Color mode transition */
+.color-mode-transition {
+  @apply transition-colors duration-300;
+}
+

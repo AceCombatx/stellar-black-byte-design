@@ -66,6 +66,22 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// New vibrant colors
+				blue: {
+					DEFAULT: '#0EA5E9',
+					light: '#D3E4FD',
+					dark: '#0284C7'
+				},
+				purple: {
+					DEFAULT: '#8B5CF6',
+					light: '#F1F0FB',
+					dark: '#6D28D9'
+				},
+				teal: {
+					DEFAULT: '#06B6D4',
+					light: '#CCFBF1',
+					dark: '#0891B2'
 				}
 			},
 			borderRadius: {
