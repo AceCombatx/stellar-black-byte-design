@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Form,
   FormControl,
@@ -29,6 +30,7 @@ type FormValues = z.infer<typeof formSchema>;
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   // Initialize react-hook-form with zod validation
   const form = useForm<FormValues>({
@@ -133,21 +135,21 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative py-24 noise-bg bg-black">
+    <section id="contact" className="relative py-16 md:py-24 noise-bg bg-black">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-gradient">Get In Touch</h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-2xl md:text-4xl font-heading font-bold mb-4 md:mb-6 text-gradient">Get In Touch</h2>
+          <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
             Have a project in mind? Need help with your development challenges? 
             Reach out to us and let's discuss how we can help.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
           <div className="panel">
-            <h3 className="text-2xl font-heading font-bold mb-6">Send us a message</h3>
+            <h3 className="text-xl md:text-2xl font-heading font-bold mb-4 md:mb-6">Send us a message</h3>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
                 <FormField
                   control={form.control}
                   name="name"
@@ -194,7 +196,7 @@ const Contact = () => {
                       <FormControl>
                         <Textarea
                           {...field}
-                          className="bg-white/5 border-white/10 focus:border-white/30 text-white min-h-[150px]"
+                          className="bg-white/5 border-white/10 focus:border-white/30 text-white min-h-[120px] md:min-h-[150px]"
                           placeholder="Tell us about your project or question"
                         />
                       </FormControl>
@@ -215,23 +217,23 @@ const Contact = () => {
             </Form>
           </div>
           
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <div className="panel">
               <div className="flex items-start">
-                <Mail className="h-6 w-6 text-white mr-4 mt-1" />
+                <Mail className="h-5 w-5 md:h-6 md:w-6 text-white mr-3 md:mr-4 mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Email Us</h3>
-                  <p className="text-gray-300 mb-2">For general inquiries:</p>
+                  <h3 className="text-lg md:text-xl font-semibold mb-1 md:mb-2">Email Us</h3>
+                  <p className="text-gray-300 text-sm md:text-base mb-1 md:mb-2">For general inquiries:</p>
                   <a 
                     href="mailto:volarissolutionsgg@gmail.com" 
-                    className="text-white hover:text-gray-200 transition-colors underline"
+                    className="text-white hover:text-gray-200 transition-colors underline text-sm md:text-base break-words"
                   >
                     volarissolutionsgg@gmail.com
                   </a>
-                  <p className="text-gray-300 mt-3 mb-2">For support:</p>
+                  <p className="text-gray-300 text-sm md:text-base mt-2 md:mt-3 mb-1 md:mb-2">For support:</p>
                   <a 
                     href="mailto:support@volarissolutions.online" 
-                    className="text-white hover:text-gray-200 transition-colors underline"
+                    className="text-white hover:text-gray-200 transition-colors underline text-sm md:text-base break-words"
                   >
                     support@volarissolutions.online
                   </a>
@@ -241,15 +243,15 @@ const Contact = () => {
             
             <div className="panel">
               <div className="flex items-start">
-                <MessageSquare className="h-6 w-6 text-white mr-4 mt-1" />
+                <MessageSquare className="h-5 w-5 md:h-6 md:w-6 text-white mr-3 md:mr-4 mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Join Our Discord</h3>
-                  <p className="text-gray-300 mb-4">
+                  <h3 className="text-lg md:text-xl font-semibold mb-1 md:mb-2">Join Our Discord</h3>
+                  <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">
                     Get faster responses and connect with our team directly on Discord.
                   </p>
                   <Button 
                     variant="outline" 
-                    className="border-white/20 hover:border-white/50 hover:bg-white/5"
+                    className="border-white/20 hover:border-white/50 hover:bg-white/5 text-sm md:text-base"
                     onClick={() => window.open("https://discord.gg/gdZXz3QR6a", "_blank")}
                   >
                     Join Volaris Solutions Server
@@ -258,16 +260,29 @@ const Contact = () => {
               </div>
             </div>
             
-            <div className="panel">
-              <h3 className="text-xl font-semibold mb-4">Our Commitment</h3>
-              <p className="text-gray-300">
-                We pride ourselves on response time. When you reach out to us, 
-                you can expect a reply within 24-48 hours during business days.
-                For urgent matters, Discord is usually the fastest way to get in touch.
-              </p>
-            </div>
+            {!isMobile && (
+              <div className="panel">
+                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-4">Our Commitment</h3>
+                <p className="text-gray-300 text-sm md:text-base">
+                  We pride ourselves on response time. When you reach out to us, 
+                  you can expect a reply within 24-48 hours during business days.
+                  For urgent matters, Discord is usually the fastest way to get in touch.
+                </p>
+              </div>
+            )}
           </div>
         </div>
+        
+        {isMobile && (
+          <div className="panel mt-6">
+            <h3 className="text-lg font-semibold mb-2">Our Commitment</h3>
+            <p className="text-gray-300 text-sm">
+              We pride ourselves on response time. When you reach out to us, 
+              you can expect a reply within 24-48 hours during business days.
+              For urgent matters, Discord is usually the fastest way to get in touch.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
