@@ -3,44 +3,125 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MessageSquare } from "lucide-react";
+import { Mail, MessageSquare, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+// Define form schema with Zod
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  // Initialize react-hook-form with zod validation
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: ""
+    },
+  });
+
+  const sendToDiscord = async (formData: FormValues) => {
+    const webhookUrl = "https://discord.com/api/webhooks/1371540943244886159/tVrulsIVRVyiJUqVE1u-EmywoO3AmPQMqjdrxi_aalWJW6N6xszi_880zK5ZSAUmLZUi";
+    
+    const discordMessage = {
+      embeds: [{
+        title: "New Contact Form Submission",
+        color: 3447003, // Blue color
+        fields: [
+          {
+            name: "Name",
+            value: formData.name,
+            inline: true
+          },
+          {
+            name: "Email",
+            value: formData.email,
+            inline: true
+          },
+          {
+            name: "Message",
+            value: formData.message
+          }
+        ],
+        timestamp: new Date().toISOString()
+      }]
+    };
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(discordMessage),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message to Discord");
+      }
+
+      return true;
+    } catch (error) {
+      console.error("Discord webhook error:", error);
+      return false;
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const sendToEmail = async (formData: FormValues) => {
+    // Normally we would use a proper email service API here
+    // For now, we'll log the intent to send an email
+    console.log(`Would send email to volarissolutionsgg@gmail.com with:`, formData);
+    
+    // In a real implementation, you would integrate with an email service API
+    // Since we can't directly send emails from the frontend, this would typically
+    // be handled by a backend service or serverless function
+    
+    return true; // Simulating successful email send
+  };
+
+  const onSubmit = async (formData: FormValues) => {
     setIsSubmitting(true);
 
-    // This is a mock submission - in a real scenario you'd send this to your backend
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Send to Discord webhook
+      const discordResult = await sendToDiscord(formData);
       
-      toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
-        variant: "default",
-      });
-      
-      setFormData({
-        name: "",
-        email: "",
-        message: ""
-      });
+      // Send to email (in a real implementation)
+      const emailResult = await sendToEmail(formData);
+
+      if (discordResult) {
+        toast({
+          title: "Message sent!",
+          description: "We'll get back to you as soon as possible.",
+          variant: "default",
+        });
+        
+        form.reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
     } catch (error) {
+      console.error("Form submission error:", error);
       toast({
         title: "Something went wrong",
         description: "Please try again later or contact us via email.",
@@ -65,61 +146,73 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="panel">
             <h3 className="text-2xl font-heading font-bold mb-6">Send us a message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Name
-                </label>
-                <Input
-                  id="name"
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="bg-white/5 border-white/10 focus:border-white/30 text-white"
-                  placeholder="Your name"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          className="bg-white/5 border-white/10 focus:border-white/30 text-white"
+                          placeholder="Your name"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Email
-                </label>
-                <Input
-                  id="email"
+                
+                <FormField
+                  control={form.control}
                   name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="bg-white/5 border-white/10 focus:border-white/30 text-white"
-                  placeholder="your.email@example.com"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="email"
+                          className="bg-white/5 border-white/10 focus:border-white/30 text-white"
+                          placeholder="your.email@example.com"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
+                
+                <FormField
+                  control={form.control}
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="bg-white/5 border-white/10 focus:border-white/30 text-white min-h-[150px]"
-                  placeholder="Tell us about your project or question"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-300">Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          {...field}
+                          className="bg-white/5 border-white/10 focus:border-white/30 text-white min-h-[150px]"
+                          placeholder="Tell us about your project or question"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              
-              <Button 
-                type="submit" 
-                className="w-full bg-white text-black hover:bg-gray-200"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
+                
+                <Button 
+                  type="submit" 
+                  className="w-full bg-white text-black hover:bg-gray-200 flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {!isSubmitting && <Send className="h-4 w-4" />}
+                </Button>
+              </form>
+            </Form>
           </div>
           
           <div className="space-y-8">
@@ -130,10 +223,10 @@ const Contact = () => {
                   <h3 className="text-xl font-semibold mb-2">Email Us</h3>
                   <p className="text-gray-300 mb-2">For general inquiries:</p>
                   <a 
-                    href="mailto:volarissolutions@draftinc.xyz" 
+                    href="mailto:volarissolutionsgg@gmail.com" 
                     className="text-white hover:text-gray-200 transition-colors underline"
                   >
-                    volarissolutions@draftinc.xyz
+                    volarissolutionsgg@gmail.com
                   </a>
                   <p className="text-gray-300 mt-3 mb-2">For support:</p>
                   <a 
