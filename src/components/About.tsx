@@ -11,7 +11,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="relative py-24 noise-bg bg-background dark:bg-black">
+    <section id="about" className="relative py-24 noise-bg bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -30,8 +30,8 @@ const About = () => {
             </p>
             
             <div className="mt-8">
-              <h3 className="text-xl font-heading font-semibold mb-4">What we do:</h3>
-              <ul className="space-y-3">
+              <h3 className="text-xl font-heading font-semibold mb-4 text-foreground">What we do:</h3>
+              <ul className="space-y-4">
                 {capabilities.map((item, idx) => (
                   <li key={idx} className="flex items-center">
                     <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
@@ -43,9 +43,9 @@ const About = () => {
           </div>
           
           <div className="lg:pl-12">
-            <div className="panel h-full">
+            <div className="panel h-full shadow-md">
               <div className="p-8 border-b border-primary/10">
-                <h3 className="text-2xl font-heading font-bold mb-2">Our Mission</h3>
+                <h3 className="text-2xl font-heading font-bold mb-2 text-foreground">Our Mission</h3>
                 <p className="text-muted-foreground">
                   To empower developers with tools, support, and solutions that make their work 
                   more efficient and less stressful, allowing them to focus on what they do best - creating.
@@ -53,25 +53,25 @@ const About = () => {
               </div>
               
               <div className="p-8">
-                <h3 className="text-2xl font-heading font-bold mb-4">Why Choose Us?</h3>
+                <h3 className="text-2xl font-heading font-bold mb-4 text-foreground">Why Choose Us?</h3>
                 
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-lg font-semibold mb-2">Developer-First Approach</h4>
+                    <h4 className="text-lg font-semibold mb-2 text-foreground">Developer-First Approach</h4>
                     <p className="text-muted-foreground">
                       We prioritize clean code, smart solutions, and responsive support because we're developers too.
                     </p>
                   </div>
                   
                   <div>
-                    <h4 className="text-lg font-semibold mb-2">Transparent Communication</h4>
+                    <h4 className="text-lg font-semibold mb-2 text-foreground">Transparent Communication</h4>
                     <p className="text-muted-foreground">
                       Clear, honest updates throughout your project with no technical jargon unless you want it.
                     </p>
                   </div>
                   
                   <div>
-                    <h4 className="text-lg font-semibold mb-2">Long-Term Partnership</h4>
+                    <h4 className="text-lg font-semibold mb-2 text-foreground">Long-Term Partnership</h4>
                     <p className="text-muted-foreground">
                       We aim to build lasting relationships, not just deliver one-off projects.
                     </p>

@@ -12,17 +12,17 @@ const ServiceCard = ({
   learnMore 
 }) => {
   return (
-    <div className="service-card panel flex flex-col justify-between h-full">
+    <div className="service-card panel flex flex-col justify-between h-full card-hover">
       <div>
-        <div className="service-icon mb-6 inline-flex p-3 rounded-lg bg-primary/10">
-          <Icon className="h-6 w-6 text-primary" />
+        <div className="service-icon mb-6 inline-flex p-3 rounded-lg bg-primary/10 text-primary">
+          <Icon className="h-6 w-6" />
         </div>
         <h3 className="text-xl font-heading font-bold mb-4">{title}</h3>
         <p className="text-muted-foreground mb-6">{description}</p>
         
         <div className="mb-6">
           <p className="text-sm text-muted-foreground mb-2">Starting from</p>
-          <p className="text-3xl font-heading font-bold">{price}</p>
+          <p className="text-3xl font-heading font-bold text-foreground">{price}</p>
         </div>
         
         <ul className="space-y-2 mb-8">
@@ -121,6 +121,7 @@ const Services = () => {
           ))}
         </div>
       </div>
+      <div className="section-divide mt-24"></div>
     </section>
   );
 };
