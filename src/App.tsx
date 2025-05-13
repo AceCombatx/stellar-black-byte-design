@@ -14,7 +14,7 @@ import Services from "./pages/Services";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <ThemeProvider defaultTheme="dark">
+  <ThemeProvider defaultTheme="system">
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />

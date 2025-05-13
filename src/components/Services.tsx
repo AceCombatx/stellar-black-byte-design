@@ -14,22 +14,22 @@ const ServiceCard = ({
   return (
     <div className="service-card panel flex flex-col justify-between h-full">
       <div>
-        <div className="service-icon mb-6 inline-flex p-3 rounded-lg bg-white/5">
-          <Icon className="h-6 w-6 text-white" />
+        <div className="service-icon mb-6 inline-flex p-3 rounded-lg bg-primary/10">
+          <Icon className="h-6 w-6 text-primary" />
         </div>
         <h3 className="text-xl font-heading font-bold mb-4">{title}</h3>
-        <p className="text-gray-300 mb-6">{description}</p>
+        <p className="text-muted-foreground mb-6">{description}</p>
         
         <div className="mb-6">
-          <p className="text-sm text-gray-400 mb-2">Starting from</p>
+          <p className="text-sm text-muted-foreground mb-2">Starting from</p>
           <p className="text-3xl font-heading font-bold">{price}</p>
         </div>
         
         <ul className="space-y-2 mb-8">
           {features.map((feature, i) => (
             <li key={i} className="flex items-start text-sm">
-              <span className="text-gray-400 mr-2">•</span>
-              <span className="text-gray-300">{feature}</span>
+              <span className="text-primary mr-2">•</span>
+              <span className="text-muted-foreground">{feature}</span>
             </li>
           ))}
         </ul>
@@ -37,7 +37,7 @@ const ServiceCard = ({
       
       <Button 
         variant="outline" 
-        className="w-full border-white/20 hover:border-white/50 hover:bg-white/5 flex justify-between"
+        className="w-full border-primary/20 hover:border-primary/50 hover:bg-primary/5 flex justify-between"
         asChild
       >
         <Link to={learnMore}>
@@ -110,7 +110,7 @@ const Services = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 inline-block text-gradient">Our Services</h2>
-          <p className="text-gray-300 text-lg">
+          <p className="text-muted-foreground text-lg">
             We provide comprehensive solutions to help developers and businesses build, maintain, and scale their digital presence.
           </p>
         </div>

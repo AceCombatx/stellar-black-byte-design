@@ -69,19 +69,19 @@ export default {
 				},
 				// New vibrant colors
 				blue: {
-					DEFAULT: '#0EA5E9',
-					light: '#D3E4FD',
-					dark: '#0284C7'
+					DEFAULT: '#3B82F6',
+					light: '#DBEAFE',
+					dark: '#2563EB'
 				},
 				purple: {
 					DEFAULT: '#8B5CF6',
-					light: '#F1F0FB',
-					dark: '#6D28D9'
+					light: '#EDE9FE',
+					dark: '#7C3AED'
 				},
-				teal: {
-					DEFAULT: '#06B6D4',
-					light: '#CCFBF1',
-					dark: '#0891B2'
+				indigo: {
+					DEFAULT: '#6366F1',
+					light: '#E0E7FF',
+					dark: '#4F46E5'
 				}
 			},
 			borderRadius: {
