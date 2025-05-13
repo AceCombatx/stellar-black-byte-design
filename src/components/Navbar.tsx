@@ -86,7 +86,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
             <span className="text-xl md:text-2xl font-heading font-bold text-foreground">VOLARIS</span>
-            <span className="text-xl md:text-2xl font-heading font-bold text-primary">SOLUTIONS</span>
+            <span className="text-xl md:text-2xl font-heading font-bold text-blue-500">SOLUTIONS</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -112,14 +112,14 @@ const Navbar = () => {
             <Link to="/services">
               <Button 
                 variant="outline" 
-                className="border-border hover:border-primary/50 hover:text-primary"
+                className="border-border hover:border-blue-500/50 hover:text-blue-500"
               >
                 View Pricing
               </Button>
             </Link>
             <Button 
               variant="outline" 
-              className="border-border hover:border-primary/50 hover:text-primary"
+              className="border-border hover:border-blue-500/50 hover:text-blue-500"
               onClick={() => window.open("https://discord.gg/gdZXz3QR6a", "_blank")}
             >
               Join Discord
@@ -198,7 +198,7 @@ const Navbar = () => {
           </div>
           <Button 
             variant="outline" 
-            className="border-border hover:border-primary/50 text-foreground mx-auto"
+            className="border-border hover:border-blue-500/50 text-foreground mx-auto"
             onClick={() => {
               window.open("https://discord.gg/gdZXz3QR6a", "_blank");
               setIsOpen(false);

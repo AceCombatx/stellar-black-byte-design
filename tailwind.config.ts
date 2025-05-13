@@ -67,35 +67,21 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// New vibrant colors
 				blue: {
-					DEFAULT: '#3B82F6',
-					light: '#DBEAFE',
-					dark: '#2563EB'
+					DEFAULT: '#0EA5E9',
+					light: '#D3E4FD',
+					dark: '#0284C7'
 				},
 				purple: {
 					DEFAULT: '#8B5CF6',
-					light: '#EDE9FE',
-					dark: '#7C3AED'
-				},
-				indigo: {
-					DEFAULT: '#6366F1',
-					light: '#E0E7FF',
-					dark: '#4F46E5'
+					light: '#F1F0FB',
+					dark: '#6D28D9'
 				},
 				teal: {
-					DEFAULT: '#14B8A6',
+					DEFAULT: '#06B6D4',
 					light: '#CCFBF1',
-					dark: '#0F766E'
-				},
-				amber: {
-					DEFAULT: '#F59E0B',
-					light: '#FEF3C7',
-					dark: '#B45309'
-				},
-				emerald: {
-					DEFAULT: '#10B981',
-					light: '#D1FAE5',
-					dark: '#059669'
+					dark: '#0891B2'
 				}
 			},
 			borderRadius: {
@@ -145,14 +131,6 @@ export default {
 					'50%': {
 						opacity: '0.8'
 					}
-				},
-				'float': {
-					'0%, 100%': {
-						transform: 'translateY(0)'
-					},
-					'50%': {
-						transform: 'translateY(-10px)'
-					}
 				}
 			},
 			animation: {
@@ -160,12 +138,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
 				'fade-out': 'fade-out 0.5s ease-out',
-				'pulse-slow': 'pulse-slow 4s infinite',
-				'float': 'float 6s ease-in-out infinite'
-			},
-			backgroundImage: {
-				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-				'hero-pattern': 'url("data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.05" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E")',
+				'pulse-slow': 'pulse-slow 4s infinite'
 			}
 		}
 	},
