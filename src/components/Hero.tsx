@@ -16,23 +16,21 @@ const Hero = () => {
           </div>
           
           <div className="animate-fade-in opacity-0" style={{animationDelay: "0.4s", animationFillMode: "forwards"}}>
-            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
               We build custom solutions for developers, server owners, and creators - from Discord bots to full-stack web applications.
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in opacity-0" style={{animationDelay: "0.6s", animationFillMode: "forwards"}}>
             <Button 
-              size="lg" 
-              className="bg-white text-black hover:bg-gray-200 font-medium"
+              size="lg"
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
             >
               Explore Services
             </Button>
             <Button 
               size="lg" 
-              variant="outline" 
-              className="border-white/20 hover:bg-white/10 hover:border-white/50"
+              variant="outline"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Get in Touch
@@ -48,7 +46,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent"></div>
     </section>
   );
 };
